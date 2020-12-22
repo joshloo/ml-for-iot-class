@@ -34,8 +34,8 @@ n_samples = len(digits.images)
 data = digits.images.reshape((n_samples, -1))
 
 
+##################################################################
 # Create a classifier: a support vector classifier
-# classifier = svm.SVC(gamma=0.001)
 classifier = KNeighborsClassifier(n_neighbors=1)
 
 # Split data into train and test subsets
@@ -59,4 +59,28 @@ for ax, (image, prediction) in zip(axes[1, :], images_and_predictions[:4]):
 
 plt.savefig('Digit prediction - KNN.png')
 
+##################################################################
+# Create a classifier: a support vector classifier
+classifier = svm.SVC(gamma=0.001)
+
+# Split data into train and test subsets
+X_train, X_test, y_train, y_test = train_test_split(
+    data, digits.target, test_size=0.5, shuffle=False)
+
+# We learn the digits on the first half of the digits
+classifier.fit(X_train, y_train)
+
+print("prediction score (SVM): " , classifier.score(X_test, y_test))
+
+
+# Now predict the value of the digit on the second half:
+predicted = classifier.predict(X_test)
+
+images_and_predictions = list(zip(digits.images[n_samples // 2:], predicted))
+for ax, (image, prediction) in zip(axes[1, :], images_and_predictions[:4]):
+    ax.set_axis_off()
+    ax.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
+    ax.set_title('Prediction: %i' % prediction)
+
+plt.savefig('Digit prediction - svm.png')
 plt.show()
