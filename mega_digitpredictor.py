@@ -1,4 +1,4 @@
-# Arthor : Loo Tung Lun
+# author : Loo Tung Lun
 
 from sklearn import svm, metrics
 from sklearn.model_selection import train_test_split
@@ -37,8 +37,9 @@ classifiers = [
 digits = load_digits()
 
 print("The Digit data set imported has " , len(digits.data) , " data.")
-print(digits.data)
 print("It comes in pixels format of 8x8, for example:")
+print(digits.data[0])
+print("The results are the digit itself: ")
 print(digits.target)
 
 # The data that we are interested in is made of 8x8 images of digits, let's
@@ -49,10 +50,6 @@ print(digits.target)
 # the dataset.
 _, axes = plt.subplots(2, 4)
 images_and_labels = list(zip(digits.images, digits.target))
-for ax, (image, label) in zip(axes[0, :], images_and_labels[:4]):
-    ax.set_axis_off()
-    ax.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
-    ax.set_title('Training: %i' % label)
 
 # To apply a classifier on this data, we need to flatten the image, to
 # turn the data in a (samples, feature) matrix:
@@ -63,21 +60,40 @@ data = digits.images.reshape((n_samples, -1))
 X_train, X_test, y_train, y_test = train_test_split(
     data, digits.target, test_size=0.5, shuffle=False)
 
+best_score = 0
+current_score = 0
+best_classifier = ''
+
 for name, clf in zip(names, classifiers):
     # We learn the digits on the first half of the digits
     clf.fit(X_train, y_train)
 
-    print("prediction score of " + name + ": " , clf.score(X_test, y_test))
-
+    current_score = clf.score(X_test, y_test)
+    if (current_score > best_score):
+        best_score = current_score
+        best_classifier = name
+    
     # Now predict the value of the digit on the second half:
     predicted = clf.predict(X_test)
 
     images_and_predictions = list(zip(digits.images[n_samples // 2:], predicted))
+    
+    for ax, (image, label) in zip(axes[0, :], images_and_labels[:4]):
+        ax.set_axis_off()
+        ax.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
+        ax.set_title('Training: %i' % label)
     for ax, (image, prediction) in zip(axes[1, :], images_and_predictions[:4]):
         ax.set_axis_off()
         ax.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
         ax.set_title('Prediction: %i' % prediction)
+        
+    print("Classification report for classifier %s:\n%s\n"
+          % (clf, metrics.classification_report(y_test, predicted)))
+    disp = metrics.plot_confusion_matrix(clf, X_test, y_test)
+    disp.figure_.suptitle("Confusion Matrix")
+    # print("Confusion matrix:\n%s" % disp.confusion_matrix)
 
     plt.savefig('DigitPredictionWith' + name + '.png')
 
-plt.show()
+print("With all the classifier compared, the best one for this data set is ")
+print(best_classifier + " with accuracy of " + str(best_score))
