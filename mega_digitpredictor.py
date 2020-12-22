@@ -5,6 +5,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_digits
 import matplotlib.pyplot as plt
 
+import glob
+import os
+import cv2
+import numpy as np
+
 # Adding mega classifier superset from sklearn library
 from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
@@ -17,21 +22,31 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 
 # The name and classifier list below must be aligned, else will have error.
-names = ["Nearest Neighbors", "Linear SVM", "RBF SVM", "Gaussian Process",
-         "Decision Tree", "Random Forest", "Neural Net", "AdaBoost",
-         "Naive Bayes", "QDA"]
+names = [
+            "Nearest Neighbors",
+            "Linear SVM",
+            "RBF SVM",
+            "Gaussian Process",
+            "Decision Tree",
+            "Random Forest",
+            "Neural Net",
+            "AdaBoost",
+            "Naive Bayes",
+            "QDA"
+            ]
 
 classifiers = [
-    KNeighborsClassifier(3),
-    SVC(kernel="linear", C=0.025),
-    SVC(gamma=0.001, C=1),
-    GaussianProcessClassifier(1.0 * RBF(1.0)),
-    DecisionTreeClassifier(max_depth=5),
-    RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1),
-    MLPClassifier(alpha=1, max_iter=1000),
-    AdaBoostClassifier(),
-    GaussianNB(),
-    QuadraticDiscriminantAnalysis()]
+                KNeighborsClassifier(3),
+                SVC(kernel="linear", C=0.025),
+                SVC(gamma=0.001, C=1),
+                GaussianProcessClassifier(1.0 * RBF(1.0)),
+                DecisionTreeClassifier(max_depth=5),
+                RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1),
+                MLPClassifier(alpha=1, max_iter=1000),
+                AdaBoostClassifier(),
+                GaussianNB(),
+                QuadraticDiscriminantAnalysis()
+                ]
 
 # The digits dataset
 digits = load_digits()
@@ -65,14 +80,14 @@ current_score = 0
 best_classifier = ''
 
 for name, clf in zip(names, classifiers):
-    # We learn the digits on the first half of the digits
+    # We learn the digits on the first half of the digits because test size is 0.5
     clf.fit(X_train, y_train)
 
     current_score = clf.score(X_test, y_test)
     if (current_score > best_score):
         best_score = current_score
         best_classifier = name
-    
+
     # Now predict the value of the digit on the second half:
     predicted = clf.predict(X_test)
 
@@ -89,11 +104,23 @@ for name, clf in zip(names, classifiers):
         
     print("Classification report for classifier %s:\n%s\n"
           % (clf, metrics.classification_report(y_test, predicted)))
-    disp = metrics.plot_confusion_matrix(clf, X_test, y_test)
-    disp.figure_.suptitle("Confusion Matrix")
-    # print("Confusion matrix:\n%s" % disp.confusion_matrix)
 
-    plt.savefig('DigitPredictionWith' + name + '.png')
+    # print("Confusion matrix:\n%s" % disp.confusion_matrix)
+    filename = 'output/DigitPredictionWith' + name + '.png'
+    plt.savefig(filename)
+
 
 print("With all the classifier compared, the best one for this data set is ")
 print(best_classifier + " with accuracy of " + str(best_score))
+
+img_dir = os.path.dirname(os.path.realpath(__file__))
+data_path = os.path.join(img_dir,'*png') 
+files = glob.glob(data_path) 
+data = []
+i=0
+for f1 in files:
+    i = i+1
+    img = cv2.imread(f1)
+    cv2.imshow(str(f1) ,img)
+
+cv2.waitKey(0)
