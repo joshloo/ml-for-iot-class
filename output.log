@@ -25,6 +25,17 @@ Classification report for classifier KNeighborsClassifier(n_neighbors=3):
 weighted avg       0.96      0.96      0.96       899
 
 
+Confusion matrix:
+[[87  0  0  0  1  0  0  0  0  0]
+ [ 0 90  0  0  0  0  0  0  1  0]
+ [ 1  0 81  4  0  0  0  0  0  0]
+ [ 0  0  1 84  0  1  0  2  2  1]
+ [ 0  0  0  0 86  0  0  0  0  6]
+ [ 0  0  0  0  0 88  1  0  0  2]
+ [ 0  0  0  0  0  0 91  0  0  0]
+ [ 0  0  0  0  0  0  0 89  0  0]
+ [ 0  2  1  1  0  0  0  0 84  0]
+ [ 0  0  0  3  0  2  0  0  1 86]]
 Classification report for classifier SVC(C=0.025, kernel='linear'):
               precision    recall  f1-score   support
 
@@ -44,6 +55,17 @@ Classification report for classifier SVC(C=0.025, kernel='linear'):
 weighted avg       0.95      0.94      0.94       899
 
 
+Confusion matrix:
+[[87  0  0  0  0  0  1  0  0  0]
+ [ 0 82  0  0  0  0  0  0  3  6]
+ [ 1  0 85  0  0  0  0  0  0  0]
+ [ 0  0  0 78  0  4  0  1  8  0]
+ [ 1  0  0  0 87  0  0  0  0  4]
+ [ 0  0  0  0  0 88  1  0  0  2]
+ [ 0  1  0  0  0  0 90  0  0  0]
+ [ 0  1  0  0  1  2  0 85  0  0]
+ [ 0  3  0  1  0  1  0  1 81  1]
+ [ 1  0  0  1  0  3  0  1  0 86]]
 Classification report for classifier SVC(C=1, gamma=0.001):
               precision    recall  f1-score   support
 
@@ -63,6 +85,17 @@ Classification report for classifier SVC(C=1, gamma=0.001):
 weighted avg       0.97      0.97      0.97       899
 
 
+Confusion matrix:
+[[87  0  0  0  1  0  0  0  0  0]
+ [ 0 88  1  0  0  0  0  0  1  1]
+ [ 0  0 85  1  0  0  0  0  0  0]
+ [ 0  0  0 79  0  3  0  4  5  0]
+ [ 0  0  0  0 88  0  0  0  0  4]
+ [ 0  0  0  0  0 88  1  0  0  2]
+ [ 0  1  0  0  0  0 90  0  0  0]
+ [ 0  0  0  0  0  1  0 88  0  0]
+ [ 0  0  0  0  0  0  0  0 88  0]
+ [ 0  0  0  1  0  1  0  0  0 90]]
 Classification report for classifier GaussianProcessClassifier(kernel=1**2 * RBF(length_scale=1)):
               precision    recall  f1-score   support
 
@@ -82,63 +115,107 @@ Classification report for classifier GaussianProcessClassifier(kernel=1**2 * RBF
 weighted avg       0.01      0.10      0.02       899
 
 
+Confusion matrix:
+[[ 0  0  0  0  0  0  0  0  0 88]
+ [ 0  0  0  0  0  0  0  0  0 91]
+ [ 0  0  0  0  0  0  0  0  0 86]
+ [ 0  0  0  0  0  0  0  0  0 91]
+ [ 0  0  0  0  0  0  0  0  0 92]
+ [ 0  0  0  0  0  0  0  0  0 91]
+ [ 0  0  0  0  0  0  0  0  0 91]
+ [ 0  0  0  0  0  0  0  0  0 89]
+ [ 0  0  0  0  0  0  0  0  0 88]
+ [ 0  0  0  0  0  0  0  0  0 92]]
 Classification report for classifier DecisionTreeClassifier(max_depth=5):
               precision    recall  f1-score   support
 
-           0       0.92      0.91      0.91        88
+           0       0.99      0.93      0.96        88
            1       0.48      0.52      0.50        91
            2       0.47      0.78      0.58        86
-           3       0.69      0.76      0.72        91
-           4       0.73      0.47      0.57        92
-           5       0.51      0.76      0.61        91
+           3       0.68      0.77      0.72        91
+           4       0.76      0.52      0.62        92
+           5       0.50      0.76      0.61        91
            6       0.89      0.75      0.81        91
-           7       0.70      0.82      0.76        89
+           7       0.71      0.81      0.76        89
            8       0.57      0.05      0.08        88
-           9       0.65      0.63      0.64        92
+           9       0.66      0.63      0.64        92
 
-    accuracy                           0.64       899
-   macro avg       0.66      0.64      0.62       899
-weighted avg       0.66      0.64      0.62       899
+    accuracy                           0.65       899
+   macro avg       0.67      0.65      0.63       899
+weighted avg       0.67      0.65      0.63       899
 
 
+Confusion matrix:
+[[82  0  1  0  1  2  0  0  0  2]
+ [ 0 47 11  8  7  6  0  3  0  9]
+ [ 1  2 67  5  1  1  4  0  0  5]
+ [ 0  2  7 70  0  5  0  4  1  2]
+ [ 0 34  0  0 48  4  2  2  0  2]
+ [ 0  0  2  1  1 69  1  8  0  9]
+ [ 0  5  6  0  1 11 68  0  0  0]
+ [ 0  1  0  8  0  8  0 72  0  0]
+ [ 0  3 49  8  3 13  1  6  4  1]
+ [ 0  3  1  3  1 18  0  6  2 58]]
 Classification report for classifier RandomForestClassifier(max_depth=5, max_features=1, n_estimators=10):
               precision    recall  f1-score   support
 
-           0       0.79      0.92      0.85        88
-           1       0.77      0.82      0.80        91
-           2       0.71      0.64      0.67        86
-           3       0.51      0.77      0.62        91
-           4       0.87      0.92      0.89        92
-           5       0.59      0.63      0.61        91
-           6       0.83      0.95      0.89        91
-           7       0.81      0.87      0.84        89
-           8       0.71      0.17      0.28        88
-           9       0.53      0.42      0.47        92
+           0       0.82      0.93      0.87        88
+           1       0.79      0.67      0.73        91
+           2       0.76      0.81      0.79        86
+           3       0.51      0.76      0.61        91
+           4       0.86      0.85      0.85        92
+           5       0.55      0.71      0.62        91
+           6       0.86      0.97      0.91        91
+           7       0.76      0.79      0.77        89
+           8       0.97      0.32      0.48        88
+           9       0.65      0.43      0.52        92
 
-    accuracy                           0.71       899
-   macro avg       0.71      0.71      0.69       899
-weighted avg       0.71      0.71      0.69       899
+    accuracy                           0.72       899
+   macro avg       0.75      0.72      0.72       899
+weighted avg       0.75      0.72      0.71       899
 
 
+Confusion matrix:
+[[82  1  0  1  0  2  2  0  0  0]
+ [ 0 61  5  3  3  8  0  3  0  8]
+ [ 1  1 70 10  0  0  1  0  1  2]
+ [ 2  5  1 69  0  7  0  4  0  3]
+ [ 3  0  0  0 78  1  6  3  0  1]
+ [ 0  0  0 18  3 65  2  1  0  2]
+ [ 0  1  0  0  1  0 88  0  0  1]
+ [ 0  0  3  0  6  9  0 70  0  1]
+ [ 1  8 12  8  0 18  3  6 28  4]
+ [11  0  1 27  0  8  0  5  0 40]]
 Classification report for classifier MLPClassifier(alpha=1, max_iter=1000):
               precision    recall  f1-score   support
 
-           0       1.00      0.98      0.99        88
+           0       0.99      0.97      0.98        88
            1       0.95      0.91      0.93        91
            2       1.00      0.98      0.99        86
-           3       0.95      0.85      0.90        91
-           4       0.99      0.92      0.96        92
-           5       0.92      0.96      0.94        91
-           6       0.95      0.99      0.97        91
-           7       0.98      0.98      0.98        89
-           8       0.91      0.94      0.93        88
-           9       0.85      0.97      0.90        92
+           3       0.95      0.84      0.89        91
+           4       0.99      0.93      0.96        92
+           5       0.90      0.95      0.92        91
+           6       0.94      0.99      0.96        91
+           7       0.98      0.97      0.97        89
+           8       0.90      0.94      0.92        88
+           9       0.85      0.96      0.90        92
 
-    accuracy                           0.95       899
-   macro avg       0.95      0.95      0.95       899
-weighted avg       0.95      0.95      0.95       899
+    accuracy                           0.94       899
+   macro avg       0.94      0.94      0.94       899
+weighted avg       0.94      0.94      0.94       899
 
 
+Confusion matrix:
+[[85  0  0  0  1  0  2  0  0  0]
+ [ 0 83  0  1  0  0  0  0  1  6]
+ [ 0  0 84  2  0  0  0  0  0  0]
+ [ 0  0  0 76  0  4  0  2  7  2]
+ [ 0  0  0  0 86  0  2  0  0  4]
+ [ 0  0  0  0  0 86  2  0  0  3]
+ [ 0  1  0  0  0  0 90  0  0  0]
+ [ 0  0  0  0  0  2  0 86  1  0]
+ [ 0  3  0  0  0  2  0  0 83  0]
+ [ 1  0  0  1  0  2  0  0  0 88]]
 Classification report for classifier AdaBoostClassifier():
               precision    recall  f1-score   support
 
@@ -158,6 +235,17 @@ Classification report for classifier AdaBoostClassifier():
 weighted avg       0.20      0.26      0.19       899
 
 
+Confusion matrix:
+[[85  0  0  0  2  0  0  0  0  1]
+ [ 0 90  0  0  1  0  0  0  0  0]
+ [ 1 82  0  0  2  0  0  0  0  1]
+ [ 0 89  0  0  1  0  0  0  0  1]
+ [ 4 67  0  0 20  0  0  0  0  1]
+ [ 3 74  0  0  6  0  0  0  0  8]
+ [ 1 54  0  0 35  0  0  0  0  1]
+ [ 0 88  0  0  1  0  0  0  0  0]
+ [ 0 87  0  0  0  0  0  0  0  1]
+ [ 0 56  0  0  1  0  0  0  0 35]]
 Classification report for classifier GaussianNB():
               precision    recall  f1-score   support
 
@@ -177,6 +265,17 @@ Classification report for classifier GaussianNB():
 weighted avg       0.82      0.81      0.81       899
 
 
+Confusion matrix:
+[[84  0  0  0  0  2  0  0  1  1]
+ [ 0 67  2  0  0  0  0  2 13  7]
+ [ 0  8 72  0  0  1  2  0  3  0]
+ [ 0  2  2 72  0  2  0  2  9  2]
+ [ 1  0  0  0 67  0  0 22  1  1]
+ [ 0  2  0  4  0 74  1  3  2  5]
+ [ 0  1  0  0  0  0 90  0  0  0]
+ [ 0  0  2  0  0 12  0 72  2  1]
+ [ 0  2  5  0  0  9  0  4 67  1]
+ [ 1  1  0  6  0  5  1  6 11 61]]
 Classification report for classifier QuadraticDiscriminantAnalysis():
               precision    recall  f1-score   support
 
@@ -196,5 +295,16 @@ Classification report for classifier QuadraticDiscriminantAnalysis():
 weighted avg       0.79      0.74      0.72       899
 
 
+Confusion matrix:
+[[75  4  0  1  1  6  0  1  0  0]
+ [ 0 85  2  0  0  1  0  1  2  0]
+ [ 0  8 74  1  0  1  2  0  0  0]
+ [ 0  5  0 82  0  2  0  2  0  0]
+ [ 1  2  0  0 63  1  0 22  0  3]
+ [ 0  3  0  9  0 78  1  0  0  0]
+ [ 0  0  0  0  0  0 91  0  0  0]
+ [ 0  1  0  3  0 10  0 72  2  1]
+ [ 0 19  2 27  0 10  0  7 21  2]
+ [ 1 11  0 19  0 28  1  6  1 25]]
 With all the classifier compared, the best one for this data set is 
 RBF SVM with accuracy of 0.9688542825361512
