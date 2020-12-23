@@ -88,6 +88,7 @@ for name, clf in zip(names, classifiers):
         best_score = current_score
         best_classifier = name
 
+    print("Accuracy score : ", current_score)
     # Now predict the value of the digit on the second half:
     predicted = clf.predict(X_test)
 
@@ -110,6 +111,7 @@ for name, clf in zip(names, classifiers):
     print("Confusion matrix:\n%s" % disp.confusion_matrix)
     filename = 'output/DigitPredictionWith' + name + '.png'
     plt.savefig(filename)
+    print("#################################")
 
 
 print("With all the classifier compared, the best one for this data set is ")
